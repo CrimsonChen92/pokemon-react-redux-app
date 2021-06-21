@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-// import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-// import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import BootstrapTable from "react-bootstrap-table-next";
-// import paginationFactory from "react-bootstrap-table2-paginator";
-// import * as ReactBootStrap from "react-bootstrap";
 
 function PokemonSets() {
   let [pokSet, setPokSet] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
-    fetch("https://api.pokemontcg.io/v2/sets")
+    fetch("https://api.pokemontcg.io/v2/sets", {
+      method: "GET",
+      headers: {
+        "X-Api-Key": "818ec6bb-1fb3-4d9b-96f2-b7de4fb600f4",
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setPokSet(data);
